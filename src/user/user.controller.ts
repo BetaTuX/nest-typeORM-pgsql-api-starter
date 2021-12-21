@@ -11,6 +11,8 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { EntityNotFoundError } from 'typeorm';
+import { User } from './entities/user.entity';
 
 @Controller('user')
 export class UserController {
@@ -27,17 +29,23 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const user = await this.userService.findOne(id);
+
+    if (user?.id === undefined) throw new EntityNotFoundError(User, { id });
+    return user;
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+    return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove(id).then(({ affected }) => {
+      if (affected === null) throw new EntityNotFoundError(User, id);
+      return affected;
+    });
   }
 }
