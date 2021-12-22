@@ -4,14 +4,16 @@ version: '3.1'
 services:
 
   db:
-    image: postgres
+    build:
+      context: "./initdb"
+      dockerfile: "Dockerfile"
     restart: always
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_MULTIPLE_DATABASES: better_shop,better_shop_testing
       POSTGRES_PASSWORD: local_pass
       POSTGRES_USER: postgres
-      POSTGRES_DB: better_shop
 
   adminer:
     image: adminer

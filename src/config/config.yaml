@@ -1,0 +1,25 @@
+jwt:
+  prod:
+    secret: 'M0stS3cur3dP4$$' #TODO: Change with your own value
+    ttl: 3600
+  dev:
+    secret: 'secret'
+    ttl: 1800
+  test:
+    secret: 'secret'
+    ttl: 3600
+db:
+  prod:
+    type: 'postgres'
+    host: 'initdb.service' #TODO: Update with Production DB service name or hostname
+    port: 5432
+    name: 'postgres'
+    user: 'postgres'
+    pass: 'password'
+  dev:
+    type: 'postgres'
+    host: 'localhost'
+    port: 5432
+    name: 'better_shop'
+    user: 'postgres'
+    pass: 'local_pass'

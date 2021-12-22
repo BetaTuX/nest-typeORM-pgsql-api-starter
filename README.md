@@ -26,8 +26,8 @@
     - [ ] Custom decorators
 - [x] DB Management
     - [x] One DB
-    - [ ] Multiple DB (prod, dev, test)
-    - [ ] Managed through YAML config file
+    - [x] Multiple DB (prod, dev, test)
+    - [x] Managed through YAML config file
 
 ## Installation
 

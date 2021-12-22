@@ -2,7 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { userProviders } from './user.providers';
-import { databaseProviders } from '../database/database.providers';
+import { ConfigService } from '@nestjs/config';
+import { testDatabaseProviders } from '../database/database-test.providers';
 
 describe('UserController', () => {
   const TEST_MAIL = 'test@test.test';
@@ -13,7 +14,12 @@ describe('UserController', () => {
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
-      providers: [UserService, ...userProviders, ...databaseProviders],
+      providers: [
+        UserService,
+        ConfigService,
+        ...userProviders,
+        ...testDatabaseProviders,
+      ],
     }).compile();
 
     controller = module.get<UserController>(UserController);
