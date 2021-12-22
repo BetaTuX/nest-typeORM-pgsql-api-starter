@@ -24,6 +24,10 @@
     - [ ] Management
     - [ ] Real add/remove process
     - [ ] Custom decorators
+- [x] DB Management
+    - [x] One DB
+    - [ ] Multiple DB (prod, dev, test)
+    - [ ] Managed through YAML config file
 
 ## Installation
 
