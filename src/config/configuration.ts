@@ -4,7 +4,7 @@ import { join } from 'path';
 
 const YAML_CONFIG_FILENAME = 'config.yaml';
 
-enum DatabaseType {
+export enum DatabaseType {
   POSTGRES = 'postgres',
   MYSQL = 'mysql',
   MARIADB = 'mariadb',
@@ -36,7 +36,7 @@ export interface DatabaseConfiguration {
 
 export interface TokenConfiguration {
   secret: string;
-  ttl: number;
+  ttl: string;
 }
 
 export default () => {

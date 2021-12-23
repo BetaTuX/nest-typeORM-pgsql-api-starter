@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { REPOSITORY_USER } from '../constants/database.constants';
+import { REPOSITORY_USER } from '../database/database.constants';
 import { User } from './entities/user.entity';
 import { DeleteResult, Repository } from 'typeorm';
 
@@ -23,7 +23,12 @@ export class UserService {
   findOne(id: string): Promise<User | undefined> {
     return this.userRepository.findOne({
       where: { id },
-      select: ['id', 'mail'],
+    });
+  }
+
+  findOneByMail(mail: string): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { mail },
     });
   }
 

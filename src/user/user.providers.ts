@@ -1,5 +1,5 @@
 import { User } from './entities/user.entity';
-import { CONNECTION, REPOSITORY_USER } from '../constants/database.constants';
+import { CONNECTION, REPOSITORY_USER } from '../database/database.constants';
 import { Connection } from 'typeorm';
 
 export const userProviders = [
