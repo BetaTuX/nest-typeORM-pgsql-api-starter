@@ -18,8 +18,8 @@
 
 - [x] User resource
     - [ ] Management
-    - [ ] Real login/register process
-    - [ ] Password Hashing
+    - [x] Real login/register process
+    - [x] Password Hashing
 - [ ] Right resource
     - [ ] Management
     - [ ] Real add/remove process
