@@ -1,18 +1,28 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request } from '@nestjs/common';
 import { Public } from '../decorators/public.decorator';
-import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
+import { CredentialsDto } from './dto/connection.dto';
 
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Public()
-  @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  async login(@Body() credentials: CredentialsDto) {
+    return this.authService.login(credentials);
   }
 
+  @Public()
+  @Post('auth/register')
+  async register(@Body() credentials: CredentialsDto) {
+    return this.authService.register(credentials);
+  }
+
+  /**
+   * Test public route
+   * TODO: Remove after next resource
+   * @param req
+   */
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
