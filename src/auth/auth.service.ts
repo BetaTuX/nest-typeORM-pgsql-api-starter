@@ -28,20 +28,15 @@ export class AuthService {
     const user = await this.userService.findOneByMail(mail);
     let dto: Partial<User>;
 
-    console.log('Validate User');
-    console.trace('checkTrace');
-    bcrypt.compare(plainTextPass, user?.pass, function(err, isValid) {
+    bcrypt.compare(plainTextPass, user?.pass, function (err, isValid) {
       if (err) throw err;
       if (isValid) {
         const { pass, ...result } = user;
         dto = result;
-        console.log('Valid', dto);
       } else {
         dto = null;
-        console.log('Invalid');
       }
     });
-    console.log('end');
     return dto;
   }
 
@@ -51,12 +46,10 @@ export class AuthService {
 
     if (isMatch) {
       const payload = { mail: user.mail, sub: user.id };
-      console.log('Valid', payload);
       return {
         access_token: this.jwtService.sign(payload),
       };
     } else {
-      console.log('Invalid');
       return null;
     }
   }
@@ -66,7 +59,6 @@ export class AuthService {
     const salt = await bcrypt.genSalt(this.SALT_ROUNDS);
     const hash = await bcrypt.hash(user.pass, salt);
 
-    console.log('LA');
     return this.userService
       .create({ mail: user.mail, pass: hash })
       .then((user) => {

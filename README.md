@@ -20,7 +20,10 @@
     - [ ] Management
     - [x] Real login/register process
     - [x] Password Hashing
-- [ ] Right resource
+- [x] Task resource
+    - [x] Basic CRUD
+    - [ ] Move Task in Task tree
+- [ ] Right management
     - [ ] Management
     - [ ] Real add/remove process
     - [ ] Custom decorators

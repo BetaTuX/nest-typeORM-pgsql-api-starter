@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
 import { globalGuardProvider } from './auth/global-guard.providers';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { globalGuardProvider } from './auth/global-guard.providers';
       load: [configuration],
     }),
     AuthModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService, ...globalGuardProvider],
